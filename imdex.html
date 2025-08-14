@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Unrestrict LinkedIn</title>
+    <style>
+        :root {
+            --linkedin-blue: #0077B5;
+            --linkedin-dark-blue: #004182;
+            --linkedin-light-blue: #EFF6FA;
+            --linkedin-gray: #e0e0e0;
+        }
+        
+        /* New Banner Styles */
+        .top-banner {
+            background-color: var(--linkedin-dark-blue);
+            color: white;
+            padding: 12px 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+        
+        .scrolling-text {
+            white-space: nowrap;
+            animation: scrollText 20s linear infinite;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-block;
+            padding-left: 100%;
+        }
+        
+        @keyframes scrollText {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 10 auto;
+            padding: 0;
+            color: #333;
+            background-color: white;
+        }
+        
+        .header {
+            position: relative;
+            text-align: center;
+            padding: 10px 0;
+            margin-bottom: 0px;
+        }
+        
+        .logo {
+            width: 450px;
+            height: 350px;
+            object-fit: contain;
+            margin: 0 auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Floating Customer Service Button */
+        .customer-service {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .cs-icon {
+            height: 90px;
+            width: 90px;
+            cursor: pointer;
+            transition: all 0.3s;
+            filter: drop-shadow(0 0 10px rgba(0, 119, 181, 0.5));
+            border-radius: 50%;
+        }
+        
+        .cs-icon:hover {
+            transform: scale(1.15) rotate(12deg);
+            filter: drop-shadow(0 0 15px rgba(0, 119, 181, 0.7));
+            animation-play-state: paused;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(-50%) translateY(0px);
+            }
+            50% {
+                transform: translateY(-50%) translateY(-18px);
+            }
+        }
+        
+        .main-content {
+            padding: 20px;
+        }
+        
+        h1 {
+            color: var(--linkedin-blue);
+            text-align: center;
+            margin: 20px 0 15px;
+            font-weight: 500;
+            font-size: 32px;
+        }
+        
+        .terms-box {
+            background-color: #fff3e0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffa000;
+            margin: 0 auto 30px;
+            font-size: 14px;
+            max-width: 800px;
+        }
+        
+        .terms-title {
+            color: #d32f2f;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .terms-list {
+            margin-left: 20px;
+            padding-left: 5px;
+        }
+        
+        .terms-list li {
+            margin-bottom: 8px;
+        }
+        
+        h2 {
+            color: var(--linkedin-dark-blue);
+            font-weight: 500;
+            margin-top: 30px;
+            font-size: 24px;
+            border-bottom: 1px solid var(--linkedin-gray);
+            padding-bottom: 8px;
+        }
+        
+        h3 {
+            color: var(--linkedin-dark-blue);
+            font-weight: 500;
+            font-size: 20px;
+            margin-top: 25px;
+        }
+        
+        .option-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .option-btn {
+            background-color: white;
+            color: var(--linkedin-blue);
+            border: 1px solid var(--linkedin-blue);
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            min-width: 180px;
+            text-align: center;
+        }
+        
+        .option-btn:hover {
+            background-color: var(--linkedin-light-blue);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .option-btn.active {
+            background-color: var(--linkedin-blue);
+            color: white;
+        }
+        
+        .content-section {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--linkedin-gray);
+            margin-bottom: 30px;
+        }
+        
+        ol, ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+        
+        a {
+            color: var(--linkedin-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        b, strong {
+            font-weight: 600;
+            color: var(--linkedin-dark-blue);
+        }
+        
+        .template {
+            background-color: var(--linkedin-light-blue);
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        
+        .form-field {
+            margin-bottom: 15px;
+        }
+        
+        .form-field label {
+            display: inline-block;
+            width: 180px;
+            font-weight: 500;
+        }
+        
+        .form-field span {
+            font-weight: 400;
+        }
+        
+        .note {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+            padding: 10px;
+            background-color: #fff8e1;
+            border-left: 3px solid #ffc107;
+        }
+        
+        .warning {
+            font-size: 14px;
+            color: #d32f2f;
+            font-weight: 500;
+            margin: 15px 0;
+        }
+        
+        .contact-box {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 4px;
+            border-left: 3px solid var(--linkedin-blue);
+            margin: 20px 0;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 15px;
+            background-color: var(--linkedin-light-blue);
+            border-radius: 4px;
+        }
+        
+        .social-icon {
+            height: 16px;
+            width: auto;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .screenshot-instruction {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
+        }
+        
+        .screenshot-list {
+            margin-left: 20px;
+        }
+        
+        .screenshot-list li {
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .logo {
+                width: 350px;
+                height: 167px;
+            }
+            
+            .customer-service {
+                top: auto;
+                bottom: 20px;
+                right: 15px;
+                transform: none;
+                animation: float-mobile 3s ease-in-out infinite;
+            }
+            
+            @keyframes float-mobile {
+                0%, 100% {
+                    transform: translateY(0px);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+            
+            .cs-icon {
+                height: 80px;
+                width: 80px;
+            }
+            
+            .option-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .option-btn {
+                width: 100%;
+            }
+            
+            .content-section {
+                padding: 15px;
+            }
+            
+            .form-field label {
+                width: 140px;
+            }
+            
+            .terms-box {
+                padding: 12px;
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .terms-list {
+                margin-left: 15px;
+            }
+            
+            .scrolling-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- New Top Banner with Scrolling Text -->
+    <div class="top-banner">
+        <div class="scrolling-text">
+            LinkedIn by Xanz ✦ Jika akun terkena restrict dan Anda berhasil memulihkannya, Anda berhak mendapatkan bonus $5 pada payment berikutnya (1x) ✦
+        </div>
+    </div>
+    
+    <!-- Header with Logo -->
+    <div class="header">
+        <img src="logo_saya.png" alt="Logo Unrestrict LinkedIn" class="logo">
+    </div>
+    
+    <!-- Floating Customer Service Button with Custom Logo -->
+    <div class="customer-service">
+        <a href="https://chat.whatsapp.com/LcgXyT1Gf1pEhvZlVCAS3i?mode=ac_t" target="_blank">
+            <img src="logo_cust.png" alt="Customer Service" class="cs-icon" title="Hubungi Customer Service">
+        </a>
+    </div>
+    
+    <div class="main-content">
+        <h1>Tutorial Unrestrict LinkedIn</h1>
+        
+        <!-- Terms and Conditions Box -->
+        <div class="terms-box">
+            <div class="terms-title">
+                <span>S&K: Mohon dimengerti</span>
+            </div>
+            <ul class="terms-list">
+                <li>Pilih Salah Satu Form dibawah ❗</li>
+                <li>Setiap form sama aja, yaitu melakukan pengaduan</li>
+                <li>Jangan spam form, yang akan menambah durasi restric kalian lebih lama</li>
+                <li>Harus lebih sabar, karna setiap case yang berjalan, perlu waktu 5 - 14 hari kerja untuk menyelesaikan laporan kalian</li>
+                <li>Terimakasih, semangat guys 🙌</li>
+            </ul>
+        </div>
+        
+        <div class="option-container">
+            <button class="option-btn active" onclick="showContent('form1', this)">Form Unrestrict 1</button>
+            <button class="option-btn" onclick="showContent('form2', this)">Form Unrestrict 2</button>
+            <button class="option-btn" onclick="showContent('form3', this)">Form Unrestrict 3</button>
+        </div>
+        
+        <!-- Form Unrestrict 1 Content -->
+        <div id="form1" class="content-section">
+            <h2>Tutorial Open Restrict</h2>
+            
+            <div class="warning">
+                Harap dipahami! Ini hanyalah contoh, kata-kata tidak boleh sama dengan admin, harus ada yang dirubah dan dikembangkan lagi kata-katanya untuk menghindari spam.
+            </div>
+            
+            <ol>
+                <li>
+                    <b>Reset Password</b>: Coba ke halaman change password melalui link ini 
+                    <a href="https://www.linkedin.com/uas/request-password-reset" target="_blank">https://www.linkedin.com/uas/request-password-reset</a>.
+                    <div class="note">Anda akan diminta verifikasi identitas (KYC). Jika berhasil, Anda akan menerima email konfirmasi. Proses ini memakan waktu 24-72 jam tergantung akun.</div>
+                </li>
+                
+                <li>
+                    <b>Form Pengaduan</b>: Jika langkah pertama tidak berhasil, isi form pengaduan di 
+                    <a href="https://lnkd.in/gfTvtQAY" target="_blank">https://lnkd.in/gfTvtQAY</a>
+                </li>
+                
+                <li>
+                    <b>Hubungi Support</b>: Kirim DM ke media sosial LinkedIn:
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/linkedin?igsh=OG54NHM1azRlN3My" target="_blank">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon">
+                            Instagram
+                        </a>
+                        <a href="https://www.facebook.com/share/16vVVrzcRR/" target="_blank">
+                            <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" class="social-icon">
+                            Facebook
+                        </a>
+                        <a href="https://x.com/LinkedInHelp?t=RfGkWEYIkaci9mjQEXK6lQ&s=09" target="_blank">
+                            <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" alt="Twitter" class="social-icon">
+                            Twitter
+                        </a>
+                    </div>
+                    <div class="note">Sebutkan bahwa akun Anda terkena restricted. Comment di post mereka bisa mempercepat respon.</div>
+                </li>
+            </ol>
+            
+            <div class="note"><b>Follow up ke email LinkedIn yah</b></div>
+            
+            <h3>Contoh Pesan:</h3>
+            <div class="template">
+                <p>Hi, my LinkedIn account<br>
+                Email: [isi email Anda]<br>
+                Full name: [nama lengkap Anda]<br><br>
+                Telah dibatasi sementara. Saya telah mengikuti langkah-langkah verifikasi di layar, tetapi saya masih tidak dapat mengakses akun saya. Saya yakin ini mungkin kesalahan, karena saya mematuhi kebijakan LinkedIn. Bisakah Anda membantu meninjau dan memulihkan akun saya? Terima kasih!</p>
+                
+                <div class="warning">
+                    <b>Catatan:</b> Ubah dan kembangkan kata-kata ini untuk membuat versi unik Anda sendiri!
+                </div>
+            </div>
+        </div>
+        
+        <!-- Form Unrestrict 2 Content -->
+        <div id="form2" class="content-section hidden">
+            <h2>Akun Restricted</h2>
+            
+            <ol>
+                <li>
+                    <b>Jika verifikasi tidak berhasil</b>: Jika Anda menerima email yang menyatakan akun Anda tetap dibatasi setelah verifikasi, ajukan banding menggunakan tautan ini: 
+                    <a href="https://www.linkedin.com/help/linkedin/ask/ts-f-appeal" target="_blank">https://www.linkedin.com/help/linkedin/ask/ts-f-appeal</a>
+                    <div class="note">Sertakan bukti identitas yang jelas dan konsisten dengan data akun Anda.</div>
+                </li>
+                
+                <li>
+                    <b>Jika Anda telah mengajukan Form</b>: Gunakan tautan ini untuk mengecek status: 
+                    <a href="https://lnkd.in/eqztE69g" target="_blank">https://lnkd.in/eqztE69g</a>
+                </li>
+                
+                <li>
+                    <b>Banding Restric permanen</b>: Jika akun Anda dibatasi secara permanen, gunakan tautan ini: 
+                    <a href="https://lnkd.in/gfTvtQAY" target="_blank">https://lnkd.in/gfTvtQAY</a>
+                    <div class="note">Beri penjelasan detail dan sopan tentang situasi Anda.</div>
+                </li>
+            </ol>
+            
+            <h3>Tips Tambahan</h3>
+            <ul>
+                <li><b>Patuhi panduan</b>: Pastikan Anda selalu mengikuti panduan komunitas LinkedIn</li>
+                <li><b>Data akurat</b>: Berikan informasi yang akurat dan konsisten selama proses verifikasi</li>
+                <li><b>Bersabar</b>: Respon LinkedIn bisa memakan waktu beberapa hari kerja</li>
+            </ul>
+        </div>
+        
+        <!-- Form Unrestrict 3 Content -->
+        <div id="form3" class="content-section hidden">
+            <h2>Formulir Unrestrict</h2>
+            
+            <p>Gunakan link berikut untuk unrestrict:<br>
+            <a href="https://www.linkedin.com/help/linkedin/ask/TS-RHA" target="_blank">https://www.linkedin.com/help/linkedin/ask/TS-RHA</a></p>
+            
+            <h3>Terjemahan ke Bahasa Indonesia:</h3>
+            <ul>
+                <li><b>Nama sesuai KTP</b> - Isi dengan nama lengkap Anda</li>
+                <li><b>Akun siapa yang Anda laporkan?</b> - Pilih "Akun Saya"</li>
+                <li><b>Apakah akun Anda terkunci?</b> - Pilih "Iya"</li>
+                <li><b>Nama profil yang Anda laporkan</b> - Isi dengan nama yang lama di profil</li>
+                <li><b>Centang Email</b></li>
+                <li><b>Pemberitahuan masuk tidak dikenal dari perangkat tidak dikenal</b></li>
+            </ul>
+            
+            <h3>Contoh Pesan:</h3>
+            <div class="template">
+                <p><b>Bahasa Indonesia:</b><br>
+                Tolong bantu saya, sepertinya orang lain telah mengakses akun saya, melakukan aktivitas di luar kendali saya, mengubah gambar profil, mengubah nama, menambahkan koneksi, bantu saya agar bisa mengakses akun saya seperti biasa.</p>
+                
+                <p><b>English:</b><br>
+                Please help me, it seems like someone else has accessed my account, doing activities beyond my control, changing profile pictures, changing names, adding connections, help me to be able to access my account as usual.</p>
+                
+                <div class="warning">
+                    <b>Catatan:</b> Buat versi pesan Anda sendiri yang unik untuk menghindari spam!
+                </div>
+            </div>
+            
+            <h3>Contoh Form:</h3>
+            <div class="template">
+                <div class="form-field">
+                    <label>Nama depan:</label>
+                    <span>Fadil</span>
+                </div>
+                
+                <div class="form-field">
+                    <label>Nama belakang:</label>
+                    <span>Jaidi</span>
+                </div>
+                
+                <div class="form-field">
+                    <label>Email:</label>
+                    <span>fadiljaidi00@gmail.com</span>
+                </div>
+                
+                <div class="form-field">
+                    <label>Layanan pihak ke-3:</label>
+                    <span>NO</span>
+                </div>
+                
+                <div class="form-field">
+                    <label>Berbagi komputer:</label>
+                    <span>NO</span>
+                </div>
+                
+                <p><b>Deskripsi masalah:</b><br>
+                Mengunjungi profil, mengubah data profil, menambahkan koneksi, masuk di perangkat lain, masuk menggunakan VPN</p>
+                
+                <p>Saya mengakses akun saya menggunakan VPN beberapa waktu lalu, tetapi ketika saya mencoba masuk lagi, saya tidak dapat mengaksesnya. Ada kemungkinan akun saya telah dibobol atau diretas.</p>
+                
+                <div class="warning">
+                    <b>Catatan:</b> Ini hanya contoh, buat deskripsi unik Anda sendiri!
+                </div>
+            </div>
+            
+            <!-- Screenshot Instructions -->
+            <div class="screenshot-instruction">
+                <h3>Lampirkan 2 Screenshot:</h3>
+                <ol class="screenshot-list">
+                    <li><b>Notifikasi Pergantian Profil</b> - Tangkapan layar notifikasi ketika profil diubah</li>
+                    <li><b>Notifikasi Pergantian Nama</b> - Tangkapan layar notifikasi ketika nama diubah</li>
+                </ol>
+                <p><i>Pastikan screenshot jelas terbaca dan menunjukkan detail penting</i></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showContent(contentId, clickedButton) {
+            // Hide all content sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.option-btn').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected content
+            document.getElementById(contentId).classList.remove('hidden');
+            
+            // Add active class to clicked button
+            clickedButton.classList.add('active');
+        }
+        
+        // Show first content by default
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set first button as active
+            document.querySelector('.option-btn').classList.add('active');
+        });
+    </script>
+</body>
+</html>
